@@ -3,10 +3,49 @@ import { Container } from "../../components";
 import FilterBtns from "../../components/button/FilterBtns";
 import { useBranchOpt } from "../../hooks";
 import RadioBtnGroup from "../../components/input/RadioBtnGroup";
+import SalesReportIem from "./SalesReportIem";
 
 export const SalesReport = () => {
   // const { branchOpts } = useBranchOpt();
   // console.log("branchOpts: " + branchOpts.Branches);
+
+  const SalesReportData = [
+    {
+      date: "16 May, 2023",
+      customerName: "Abdul Kuddus",
+      branch: "Online",
+      number: "01712244605",
+      orderAmount: "1200 BDT",
+      address: "86, R.K Tower, Sonargaon Road, Banglamotor, Dhaka",
+      invoiceId: "1a",
+    },
+    {
+      date: "16 May, 2023",
+      customerName: "Abdul Kuddus",
+      branch: "Online",
+      number: "01712244605",
+      orderAmount: "1200 BDT",
+      address: "86, R.K Tower, Sonargaon Road, Banglamotor, Dhaka",
+      invoiceId: "1a",
+    },
+    {
+      date: "14 May, 2023",
+      customerName: "Abdul Kuddus",
+      branch: "Dagon Bhuiyan",
+      number: "01712244605",
+      orderAmount: "1200 BDT",
+      invoiceId: "2b",
+    },
+    {
+      date: "13 May, 2023",
+      customerName: "Abdul Kuddus",
+      branch: "Dagon Bhuiyan",
+      number: "01712244605",
+      orderAmount: "1200 BDT",
+      invoiceId: "3c",
+    },
+  ];
+
   const timePeriodOptions = [
     "all",
     "today",
@@ -24,7 +63,7 @@ export const SalesReport = () => {
   };
   branchOpts.Branches.unshift("all");
 
-  const [selectedBranch, setSelectedBranch] = useState("all"); // State for the selected branch
+  const [selectedBranch, setSelectedBranch] = useState("all");
 
   const [selectedTimeOpt, setSelectedTimeOpt] = useState("all");
 
@@ -45,6 +84,11 @@ export const SalesReport = () => {
           selectedOption={selectedBranch}
           setSelectedOption={setSelectedBranch}
         />
+        <div className="grid max-h-[60vh] gap-4 overflow-y-auto">
+          {SalesReportData.map((data) => (
+            <SalesReportIem key={data.invoiceId} reportData={data} />
+          ))}
+        </div>
       </div>
     </Container>
   );
