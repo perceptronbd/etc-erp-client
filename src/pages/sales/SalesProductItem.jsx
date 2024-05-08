@@ -4,8 +4,8 @@
 // It updates the product quantity and triggers the addToCart function when the quantity changes.
 
 import { useEffect, useState } from "react";
-import { RxPlus, RxMinus } from "react-icons/rx";
 import { Checkbox } from "../../components";
+import { Minus, Plus } from "lucide-react";
 
 const SalesProductItem = ({ product, addToCart }) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -62,7 +62,7 @@ const SalesProductItem = ({ product, addToCart }) => {
             onClick={handleDecrease}
             disabled={productData.quantity < 1}
           >
-            <RxMinus className="text-sm" />
+            <Minus size={14} />
           </button>
           <p className="text-center font-semibold"> {productData.quantity}</p>
           <div className="flex justify-end">
@@ -70,7 +70,7 @@ const SalesProductItem = ({ product, addToCart }) => {
               className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-black text-2xl transition-all duration-150 hover:border-[#0C924F] hover:text-[#0C924F]"
               onClick={handleIncrease}
             >
-              <RxPlus className="text-sm" />
+              <Plus size={16} />
             </button>
           </div>
         </div>
