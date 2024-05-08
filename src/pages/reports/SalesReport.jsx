@@ -26,7 +26,7 @@ export const SalesReport = () => {
       number: "01712244605",
       orderAmount: "1200 BDT",
       address: "86, R.K Tower, Sonargaon Road, Banglamotor, Dhaka",
-      invoiceId: "1a",
+      invoiceId: "1b",
     },
     {
       date: "14 May, 2023",
@@ -67,6 +67,25 @@ export const SalesReport = () => {
 
   const [selectedTimeOpt, setSelectedTimeOpt] = useState("all");
 
+  const extractDate = (data) => {
+    // Check if data is an array
+    if (!Array.isArray(data)) {
+      throw new Error("extractDate() must accept an array as argument.");
+    }
+
+    // Extract date from the array
+    const date = Array.from(new Set(data.map((report) => report.date)));
+
+    return date;
+  };
+
+  // const filteredData =
+  //   selectedBranch === "all"
+  //     ? SalesReportData
+  //     : SalesReportData.filter((data) => data.branch === selectedBranch);
+
+  const dates = extractDate(SalesReportData);
+
   return (
     <Container className={"w-fit justify-start"}>
       <div className="w-full py-4 text-start font-semibold">
@@ -84,9 +103,21 @@ export const SalesReport = () => {
           selectedOption={selectedBranch}
           setSelectedOption={setSelectedBranch}
         />
-        <div className="grid max-h-[60vh] gap-4 overflow-y-auto">
-          {SalesReportData.map((data) => (
-            <SalesReportIem key={data.invoiceId} reportData={data} />
+        <div className="grid max-h-[60vh] gap-8 overflow-y-auto">
+          {dates.map((date) => (
+            <div key={date}>
+              <h3 className="mb-2 font-bold ">{date}</h3>
+              <div className="grid gap-4">
+                {SalesReportData.map(
+                  (data) =>
+                    date === data.date && (
+                      <div key={data.invoiceId}>
+                        <SalesReportIem reportData={data} />
+                      </div>
+                    )
+                )}
+              </div>
+            </div>
           ))}
         </div>
       </div>

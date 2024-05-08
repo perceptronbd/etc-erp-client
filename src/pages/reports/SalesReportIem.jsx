@@ -2,9 +2,8 @@ import React from "react";
 
 const SalesReportIem = ({ reportData }) => {
   return (
-    <div>
+    <>
       <div>
-        <h3 className="mb-2 font-bold">{reportData.date}</h3>
         <div className="flex justify-between rounded-xl border p-4 shadow">
           <table>
             <tr>
@@ -39,7 +38,7 @@ const SalesReportIem = ({ reportData }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
