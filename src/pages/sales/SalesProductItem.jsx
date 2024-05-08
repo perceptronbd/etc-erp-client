@@ -62,7 +62,7 @@ const SalesProductItem = ({ product, addToCart }) => {
             onClick={handleDecrease}
             disabled={productData.quantity < 1}
           >
-            <Minus size={14} />
+            <Minus size={16} />
           </button>
           <p className="text-center font-semibold"> {productData.quantity}</p>
           <div className="flex justify-end">
