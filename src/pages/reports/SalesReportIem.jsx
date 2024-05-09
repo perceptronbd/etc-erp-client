@@ -3,7 +3,6 @@ import { Button } from "../../components";
 import { Link } from "react-router-dom";
 
 const SalesReportIem = ({ reportData }) => {
-  console.log("Sales Report", reportData);
   return (
     <>
       <div>
@@ -36,9 +35,9 @@ const SalesReportIem = ({ reportData }) => {
               <span className="font-medium">{reportData.branch}</span>
             </div>
             <div>
-              <Button className="bg-purple-500 ">
-                <Link to={`invoice/${reportData.invoiceId}`}>Invoice</Link>
-              </Button>
+              <Link to={`invoice/${reportData.invoiceId}`}>
+                <Button className="bg-purple-500 ">Invoice</Button>
+              </Link>
             </div>
           </div>
         </div>

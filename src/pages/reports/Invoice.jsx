@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Container } from "../../components";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const InvoiceHeader = ({
   companyName,
@@ -169,10 +170,16 @@ const Invoice = () => {
 
   return (
     <Container className={"w-fit justify-start"}>
-      <div>
-        <h3 className="my-5 text-lg font-medium">Invoice</h3>
+      <div className="flex w-full justify-between py-4 text-start text-lg font-medium">
+        <h3>Invoice</h3>
+        <Link to="/sales-report">
+          <Button>
+            <ChevronLeft size={20} />
+            Go Back
+          </Button>
+        </Link>
       </div>
-      <div className="max-h-[90vh] w-[900px] overflow-y-auto rounded-lg bg-white p-5 text-sm">
+      <div className="max-h-[90vh]  w-[800px] overflow-y-auto rounded-lg bg-white p-5 text-sm">
         <div className="border p-5 shadow">
           <div className="block h-5 w-full bg-red-500" />
           <InvoiceHeader
@@ -203,7 +210,7 @@ const Invoice = () => {
             </div>
           </div>
           <table className="w-full border-collapse">
-            <thead className="bg-red-500 text-white">
+            <thead className="border border-red-500 bg-red-500 text-white">
               <th className="px-4 py-1">Description</th>
               <th className="px-4 py-1">Quantity</th>
               <th className="px-4 py-1">Unit Price</th>
@@ -220,9 +227,9 @@ const Invoice = () => {
               ))}
             </tbody>
           </table>
-          <div className="my-4 grid grid-cols-2 text-sm">
+          <div className="my-4 grid grid-cols-2 ">
             <p className="text-sm font-medium">Remarks/Payment Instructions</p>
-            <div className="grid justify-items-end gap-3 border-b-black pb-4 text-sm font-medium uppercase">
+            <div className="grid justify-items-end gap-3 border-b-black pb-4 text-xs font-medium uppercase">
               <div className="flex gap-4">
                 Subtotal: <p className="w-24 border-b-2">{subtotal}</p>
               </div>
@@ -246,7 +253,7 @@ const Invoice = () => {
               </div>
             </div>
           </div>
-          <div className="block h-5 w-full bg-red-500" />
+          <div className="mt-12 block h-5 w-full bg-red-500" />
         </div>
         <Button className="mt-5 bg-purple-500">Download PDF</Button>
       </div>
