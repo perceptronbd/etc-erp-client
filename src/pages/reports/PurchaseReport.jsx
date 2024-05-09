@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { useAuth } from "../../context/AuthContext";
 import FilterBtns from "../../components/button/FilterBtns";
 import PurchaseReportItem from "./PurchaseReportItem";
+import ListSkeleton from "../../components/skeleton/ListSkeleton";
+import FilterBtnsSkeleton from "../../components/skeleton/FilterBtnsSkeleton";
 
 export const PurchaseReport = () => {
   const timePeriodOptions = [
@@ -94,17 +96,21 @@ export const PurchaseReport = () => {
     <Container className={"w-fit justify-start"}>
       <div className="w-full mb-3 text-lg font-medium ">Purchase Report</div>
       <div className="w-full p-5 bg-white rounded-lg">
-        <FilterBtns
-          data={timePeriodOptions}
-          selectedState={selectedTimeOpt}
-          setSelectedState={setSelectedTimeOpt}
-        />
+        {isLoading ? (
+          <FilterBtnsSkeleton />
+        ) : (
+          <FilterBtns
+            data={timePeriodOptions}
+            selectedState={selectedTimeOpt}
+            setSelectedState={setSelectedTimeOpt}
+          />
+        )}
         <div
           className="grid gap-8 mt-16 overflow-y-auto"
           style={{ maxHeight: "calc(100vh - 227px)" }}
         >
           {isLoading ? (
-            <span>Loading...</span>
+            <ListSkeleton />
           ) : (
             dates.map((date) => (
               <div key={date}>
