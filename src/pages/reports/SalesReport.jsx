@@ -88,7 +88,7 @@ export const SalesReport = () => {
 
   return (
     <Container className={"w-fit justify-start"}>
-      <div className="w-full py-4 text-start font-semibold">
+      <div className="w-full py-4 text-start text-lg font-medium">
         <h3>Sales Report</h3>
       </div>
       <div className="flex flex-col gap-12 rounded-lg bg-white p-5">

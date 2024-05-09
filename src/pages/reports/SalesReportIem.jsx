@@ -1,6 +1,9 @@
 import React from "react";
+import { Button } from "../../components";
+import { Link } from "react-router-dom";
 
 const SalesReportIem = ({ reportData }) => {
+  console.log("Sales Report", reportData);
   return (
     <>
       <div>
@@ -33,7 +36,9 @@ const SalesReportIem = ({ reportData }) => {
               <span className="font-medium">{reportData.branch}</span>
             </div>
             <div>
-              <button className="rounded-md bg-purple-500 px-4 py-1 text-white">Invoice</button>
+              <Button className="bg-purple-500 ">
+                <Link to={`invoice/${reportData.invoiceId}`}>Invoice</Link>
+              </Button>
             </div>
           </div>
         </div>
