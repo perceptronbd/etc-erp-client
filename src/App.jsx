@@ -21,6 +21,7 @@ import {
   StockQuantity,
   UpdateEmployee,
 } from "./pages";
+import Invoice from "./pages/reports/Invoice";
 
 export default function App() {
   const { user } = useAuth();
@@ -37,13 +38,14 @@ export default function App() {
         <Route path="purchase" element={<Purchase />} />
         <Route path="sales" element={<Sales />} />
         <Route path="sales-report" element={<SalesReport />} />
+        <Route path="sales-report/invoice/:id" element={<Invoice />} />
         <Route path="purchase-report" element={<PurchaseReport />} />
         <Route path="cash-withdraw" element={<CashWithdraw />} />
         <Route path="orders" element={<Orders />} />
         <Route path="employees" element={<Employees />} />
         <Route path="employees/add-employee" element={<AddEmployee />} />
-        <Route path="stockQuantity" element={< StockQuantity/>} />
-        <Route path="referers" element={< Referers/>} />
+        <Route path="stockQuantity" element={<StockQuantity />} />
+        <Route path="referers" element={<Referers />} />
         <Route path="employees/update-employee/:item" element={<UpdateEmployee />} />
       </Route>
     </Routes>
