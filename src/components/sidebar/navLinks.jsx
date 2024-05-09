@@ -9,7 +9,7 @@ import {
   Users,
   Wallet,
   Layers2,
-  UserCircle
+  UserCircle,
 } from "lucide-react";
 export const navLinks = [
   {
@@ -39,13 +39,8 @@ export const navLinks = [
       {
         title: "Stock",
         path: "/stockQuantity",
-        icon : <Layers2 />,
+        icon: <Layers2 />,
       },
-      {
-        title: "CSB and Referers",
-        path: "/referers",
-        icon :  <UserCircle />,
-      }
     ],
   },
   {

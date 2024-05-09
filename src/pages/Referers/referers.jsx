@@ -9,19 +9,23 @@ export const Referers = () => {
   const ignoreKeys = ["sn", "_id", "__v", "createdAt", "updatedAt", "units"];
   return (
     <>
-      <div className="w-full">
-        <h5 className="text-base font-semibold my-4">CSB Holders</h5>
-        <Table data={accounts} ignoreKeys={ignoreKeys} />
+      <div className="w-full ">
+        <h5 className="my-4 text-base font-semibold">CSB Holders</h5>
+        <div className="overflow-y-auto " style={{ maxHeight: "calc(100vh - 63px)" }}>
+          <Table data={accounts} ignoreKeys={ignoreKeys} />
+        </div>
       </div>
-      <div className="mx-2 w-7/12">
-          <div className="border-2 border-green-600 rounded-lg bg-white px-4 mt-5">
-          <div className="heading my-4 flex justify-between items-center">
+      <div className="w-7/12 mx-2">
+        <div className="px-4 ">
+          <div className="flex items-center justify-between my-4 heading">
             <h5 className="text-base font-semibold">Top 10 Referers</h5>
             <h5 className="text-base font-semibold">{date}</h5>
           </div>
+          <div className="max-h-full overflow-y-auto" style={{ maxHeight: "calc(100vh - 63px)" }}>
             <Table data={referdata} ignoreKeys={ignoreKeys} />
           </div>
         </div>
+      </div>
     </>
   );
 };
