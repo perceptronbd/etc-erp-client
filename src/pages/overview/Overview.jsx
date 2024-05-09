@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "../../components";
+import { Referers } from "../Referers/referers";
 
 const mostSold = [
   { name: "Product A", value: 500 },
@@ -288,9 +289,5 @@ const listItems = [
 ];
 
 export const Overview = () => {
-  return (
-    <Container className={"bg-neutral-200"}>
-      <div className="text-5xl font-bold text-neutral-400">Will Arrive Soon...</div>
-    </Container>
-  );
+  return <Referers />;
 };
