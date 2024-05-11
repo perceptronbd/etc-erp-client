@@ -7,6 +7,8 @@ import FilterBtns from "../../components/button/FilterBtns";
 import PurchaseReportItem from "./PurchaseReportItem";
 import ListSkeleton from "../../components/skeleton/ListSkeleton";
 import FilterBtnsSkeleton from "../../components/skeleton/FilterBtnsSkeleton";
+import { formatDate } from "../../utils/dateFormat";
+import { filterDataByTimePeriod } from "../../utils/filterDataByTimePeriod";
 
 export const PurchaseReport = () => {
   const timePeriodOptions = [
@@ -17,68 +19,35 @@ export const PurchaseReport = () => {
     "last week",
     "last month",
     "last 30 days",
-    "monthly report",
-    "yearly report",
+    "current year",
   ];
   const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [purchaseReportData, setPurchaseReportData] = useState([]);
   const [selectedTimeOpt, setSelectedTimeOpt] = useState("all");
+  const [filteredPurchaseReportData, setFilteredPurchaseReportData] = useState([]);
 
   const extractDate = (data) => {
     // Check if data is an array
     if (!Array.isArray(data)) {
       throw new Error("extractDate() must accept an array as argument.");
     }
-
     // Extract date from the array
     const date = Array.from(new Set(data.map((report) => report.purchaseDate)));
-
     return date;
   };
-  const dates = extractDate(purchaseReportData);
+  const dates = extractDate(filteredPurchaseReportData);
 
-  const formatDate = (dateString) => {
-    // Create a new Date object from the provided date string
-    const date = new Date(dateString);
+  //Effect to filter data based on time period options
+  useEffect(() => {
+    const fitleredData = filterDataByTimePeriod(purchaseReportData, selectedTimeOpt);
+    setFilteredPurchaseReportData(fitleredData);
+  }, [selectedTimeOpt, purchaseReportData]);
 
-    // Define an array of month names
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    // Get the day, month, and year from the Date object
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-
-    // Format the date as "Day Month, Year" (e.g., "16 May, 2023")
-    const formattedDate = `${day} ${monthNames[monthIndex]}, ${year}`;
-
-    return formattedDate;
-  };
-
-  // Example usage
-  // const originalDateString = "2023-12-26T00:49:27.627Z";
-  // const formattedDate = formatDate(originalDateString);
-  // console.log(formattedDate); // Output: "26 December, 2023"
-
+  //Effect to fetch all purchase reports data
   useEffect(() => {
     setIsLoading(true);
-
     //logs("stockList useEffect:", [stocksData], Style.effects);
-
     const getAllPurchaseReport = async () => {
       const response = await getAllPurchaseReportApi(user.token);
       if (response.status === 200) {
@@ -92,10 +61,11 @@ export const PurchaseReport = () => {
     };
     getAllPurchaseReport();
   }, []);
+
   return (
     <Container className={"w-fit justify-start"}>
-      <div className="w-full mb-3 text-lg font-medium ">Purchase Report</div>
-      <div className="w-full p-5 bg-white rounded-lg">
+      <div className="mb-3 w-full text-lg font-medium ">Purchase Report</div>
+      <div className="w-full rounded-lg bg-white p-5">
         {isLoading ? (
           <FilterBtnsSkeleton />
         ) : (
@@ -106,17 +76,21 @@ export const PurchaseReport = () => {
           />
         )}
         <div
-          className="grid gap-8 mt-16 overflow-y-auto"
-          style={{ maxHeight: "calc(100vh - 227px)" }}
+          className="mt-16 grid gap-8 overflow-y-auto"
+          style={{ maxHeight: "calc(100vh - 188px)" }}
         >
           {isLoading ? (
             <ListSkeleton />
+          ) : !dates.length ? (
+            <div className="text-lg font-semibold text-rose-400">
+              No Purchase Report Data Found!
+            </div>
           ) : (
             dates.map((date) => (
               <div key={date}>
                 <h3 className="mb-2 font-bold ">{formatDate(date)}</h3>
                 <div className="grid gap-4">
-                  {purchaseReportData.map(
+                  {filteredPurchaseReportData.map(
                     (data) =>
                       date === data.purchaseDate && (
                         <div key={data._id}>

@@ -6,7 +6,7 @@ const PurchaseReportItem = ({ reportData }) => {
   return (
     <>
       <div>
-        <div className="flex justify-between p-4 border shadow rounded-xl">
+        <div className="flex justify-between rounded-xl border p-4 shadow">
           <table>
             <tr>
               <td className="pr-2 font-medium">Supplier Name </td>
@@ -33,7 +33,9 @@ const PurchaseReportItem = ({ reportData }) => {
           <div className="flex flex-col items-end justify-end">
             <div>
               <Link to={`#`}>
-                <Button className="bg-purple-500 ">See Products</Button>
+                <Button className="bg-purple-500 " disabled>
+                  See Products
+                </Button>
               </Link>
             </div>
           </div>
