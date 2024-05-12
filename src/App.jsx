@@ -22,6 +22,7 @@ import {
   UpdateEmployee,
 } from "./pages";
 import IndirectExpenses from "./pages/indirect-expenses/IndirectExpenses";
+import OthersIncome from "./pages/others-income/OthersIncome";
 
 export default function App() {
   const { user } = useAuth();
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="employees/add-employee" element={<AddEmployee />} />
         <Route path="stockQuantity" element={<StockQuantity />} />
         <Route path="indirect-expenses" element={<IndirectExpenses />} />
+        <Route path="others-income" element={<OthersIncome />} />
         <Route path="employees/update-employee/:item" element={<UpdateEmployee />} />
       </Route>
     </Routes>

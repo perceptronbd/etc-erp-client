@@ -11,6 +11,7 @@ import {
   Layers2,
   UserCircle,
   CircleDollarSign,
+  Receipt,
 } from "lucide-react";
 export const navLinks = [
   {
@@ -68,6 +69,11 @@ export const navLinks = [
         title: "Indirect Expenses",
         path: "/indirect-expenses",
         icon: <CircleDollarSign size={18} />,
+      },
+      {
+        title: "Others Income",
+        path: "/others-income",
+        icon: <Receipt size={18} />,
       },
     ],
   },
