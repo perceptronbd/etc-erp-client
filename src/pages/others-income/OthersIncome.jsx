@@ -84,8 +84,9 @@ const OthersIncome = () => {
             />
           </div>
 
-          <div className="w-full text-end">
-            <Button className="mt-6 w-1/2" type="submit" disabled={loading}>
+          <div className="grid w-full grid-cols-2 gap-4 text-end">
+            <div />
+            <Button className="mt-2 w-full " type="submit" disabled={loading}>
               {loading ? "Saving..." : "Save"}
             </Button>
           </div>
