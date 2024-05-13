@@ -17,8 +17,6 @@ const OthersIncome = () => {
     },
   ]);
 
-  console.log("income sources", incomeSources);
-
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
     const updatedIncomeSources = [...incomeSources];
@@ -56,6 +54,13 @@ const OthersIncome = () => {
     if (index !== 0) {
       const updatedIncomeSources = incomeSources.filter((_, idx) => idx !== index);
       setIncomeSources(updatedIncomeSources);
+    } else {
+      setIncomeSources([
+        {
+          incomeTitle: "",
+          amount: "",
+        },
+      ]);
     }
   };
 
@@ -138,7 +143,7 @@ const OthersIncome = () => {
                 className="hover: border border-rose-400 bg-white text-rose-400 hover:bg-rose-400 hover:text-white disabled:cursor-not-allowed"
                 type="button"
                 onClick={() => handleRemoveIncomeSource(idx)}
-                disabled={loading || idx === 0}
+                disabled={loading}
               >
                 <X size={18} />
               </Button>

@@ -51,6 +51,13 @@ const IndirectExpenses = () => {
     if (index !== 0) {
       const updatedExpenses = expenses.filter((_, idx) => idx !== index);
       setExpenses(updatedExpenses);
+    } else {
+      setExpenses([
+        {
+          expenseTitle: "",
+          amount: "",
+        },
+      ]);
     }
   };
 
@@ -133,7 +140,7 @@ const IndirectExpenses = () => {
                 className="hover: border border-rose-400 bg-white text-rose-400 hover:bg-rose-400 hover:text-white disabled:cursor-not-allowed"
                 type="button"
                 onClick={() => handleRemoveExpense(idx)}
-                disabled={loading || idx === 0}
+                disabled={loading}
               >
                 <X size={18} />
               </Button>
