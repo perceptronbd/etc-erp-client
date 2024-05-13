@@ -143,7 +143,12 @@ const OthersIncome = () => {
                 className="hover: border border-rose-400 bg-white text-rose-400 hover:bg-rose-400 hover:text-white disabled:cursor-not-allowed"
                 type="button"
                 onClick={() => handleRemoveIncomeSource(idx)}
-                disabled={loading}
+                disabled={
+                  loading ||
+                  (idx === 0 &&
+                    source.incomeTitle === "" &&
+                    (source.amount === "" || source.amount === 0))
+                }
               >
                 <X size={18} />
               </Button>

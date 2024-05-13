@@ -140,7 +140,12 @@ const IndirectExpenses = () => {
                 className="hover: border border-rose-400 bg-white text-rose-400 hover:bg-rose-400 hover:text-white disabled:cursor-not-allowed"
                 type="button"
                 onClick={() => handleRemoveExpense(idx)}
-                disabled={loading}
+                disabled={
+                  loading ||
+                  (idx === 0 &&
+                    expense.expenseTitle === "" &&
+                    (expense.amount === "" || expense.amount === 0))
+                }
               >
                 <X size={18} />
               </Button>
