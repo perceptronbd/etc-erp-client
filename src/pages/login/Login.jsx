@@ -49,6 +49,21 @@ export const Login = () => {
     }
   };
 
+  const handleGeustLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const guestData = { phone: "01234567890", password: "admin1234" };
+    const res = await loginApi(guestData);
+    logs("handleSubmit: loginApi res", [res], Style.function);
+    if (res.status === 200) {
+      setLoading(false);
+      login(res.data);
+    } else {
+      setLoading(false);
+      return toast.error(res.data.message);
+    }
+  };
+
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -68,7 +83,7 @@ export const Login = () => {
             </Text>
           </span>
         </section>
-        <form onSubmit={handleSubmit} className="flex w-full flex-col items-center">
+        <form className="flex w-full flex-col items-center">
           <div className="flex flex-col ">
             <Text variant="bodySmall" className={"text-textColor-light"}>
               Login
@@ -78,8 +93,18 @@ export const Login = () => {
             ))}
           </div>
           <hr className="py-1 " />
-          <Button loading={loading} type="submit" className={"w-40"}>
+          <Button loading={loading} type="submit" className={"w-40"} onClick={handleSubmit}>
             Login
+          </Button>
+          <hr className="py-1 " />
+          <Button
+            loading={loading}
+            type="submit"
+            variant="link"
+            className={"w-40 text-accent"}
+            onClick={handleGeustLogin}
+          >
+            Continue as Guest
           </Button>
         </form>
       </div>
